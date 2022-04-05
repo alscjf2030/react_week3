@@ -22,10 +22,10 @@ const Image = (props) => {
             </AspectOutter>
         )
     }
-
-    return (
-        <ImageCircle></ImageCircle>
-    )
+    //
+    // return (
+    //     <ImageCircle></ImageCircle>
+    // )
 }
 
 Image.defaultProps = {

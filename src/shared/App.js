@@ -8,10 +8,26 @@ import Post from "../components/Post";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Header from "../components/Header";
-import {Grid} from "../elements"
+import {Grid, Button} from "../elements"
+import Permit from "./Permit";
+
+import {actionCreators as userActions} from "../redux/modules/user";
+import {useDispatch} from "react-redux";
+import {apiKey} from "./firebase";
 
 function App() {
     // const navigate = useNavigate();
+    const dispatch = useDispatch()
+
+    const _session_key = `firebase:authUser:${apiKey}:[DEFAULT]`
+    const is_session = sessionStorage.getItem(_session_key)? true : false
+
+    React.useEffect(() => {
+
+        if(is_session){
+            dispatch(userActions.loginCheckFB())
+        }
+    }, [])
 
     return (
         <HeadLine>
@@ -25,6 +41,9 @@ function App() {
                     </Routes>
                 </Grid>
             </div>
+            <Permit>
+                <Button is_float text='+'></Button>
+            </Permit>
             <GlobalStyle/>
         </HeadLine>
     );

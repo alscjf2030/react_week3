@@ -1,19 +1,20 @@
-import React from "react";
-import {Route, Routes} from "react-router-dom";
-import styled from "styled-components";
+// import React from "react";
+// import {Route, Routes} from "react-router-dom";
+// import styled from "styled-components";
+//
+// import Post from "../components/Post";
+//
+// const Main = (props) => {
+//
+//     return (
+//         <div>
+//             <Routes>
+//                 <Route path="/" element={<Post/>}/>
+//             </Routes>
+//         </div>
+//     )
+// }
+//
+// export default Main;
 
-import Post from "../components/Post";
-
-const Main = (props) => {
-
-    return (
-        <div>
-            <Routes>
-                <Route path="/" element={<Post/>}/>
-            </Routes>
-        </div>
-    )
-}
-
-export default Main;
-
+// 사용 안함.
