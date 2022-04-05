@@ -31,6 +31,7 @@ const GridBox = styled.div`
   width: ${(props) => props?.width};
   height: 100%;
   box-sizing: border-box;
+<<<<<<< HEAD
   ${(props) => props.padding ? `padding: ${props.padding}` : ""};
   ${(props) => props.margin ? `margin: ${props.margin}` : ""};
   ${(props) => props.bg ? `background-color: ${props.bg}` : ""};
@@ -40,6 +41,17 @@ const GridBox = styled.div`
                   align-items: center; 
                   justify-content: space-between;`
                   : ""};
+=======
+  ${(props) => props.padding ? `padding: ${props.padding}`: ""};
+  ${(props) => props.margin ? `margin: ${props.margin}`: "" };
+  ${(props) => props.bg ? `background-color: ${props.bg}`: "" };
+  ${(props) => 
+          props.is_flex ? 
+                  `display: flex; 
+                  align-items: center; 
+                  justify-content: space-between;`
+                  : "" };
+>>>>>>> 2f2a128cc50b37a590a8e647f1f2ddd5f22ae66e
 `
 
 export default Grid;

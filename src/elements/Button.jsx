@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
+<<<<<<< HEAD
     const {text, _onClick, is_float} = props;
 
 
@@ -16,13 +17,25 @@ const Button = (props) => {
 
     return (
         <ElButton onClick={_onClick}>{text}</ElButton>
+=======
+    const {text, _onClick} = props;
+
+    return (
+        <div>
+            <ElButton onClick={_onClick}>{text}</ElButton>
+        </div>
+>>>>>>> 2f2a128cc50b37a590a8e647f1f2ddd5f22ae66e
     )
 }
 
 Button.defaultProps = {
     text: '텍스트',
+<<<<<<< HEAD
     _onClick: () => {},
     is_float: false,
+=======
+    _onClick: () =>{}
+>>>>>>> 2f2a128cc50b37a590a8e647f1f2ddd5f22ae66e
 }
 
 const ElButton = styled.button`
@@ -34,6 +47,7 @@ const ElButton = styled.button`
   border: none;
 `
 
+<<<<<<< HEAD
 const FloatButton = styled.button`
   width: 50px;
   height: 50px;
@@ -53,4 +67,6 @@ const FloatButton = styled.button`
   justify-content: center;
 `
 
+=======
+>>>>>>> 2f2a128cc50b37a590a8e647f1f2ddd5f22ae66e
 export default Button
