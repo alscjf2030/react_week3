@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, {useState} from "react";
 import styled from "styled-components";
 import {Grid, Text, Input, Button} from "../elements"
@@ -28,13 +27,6 @@ const SignUp = (props) => {
 
         dispatch(userActions.signupFB(id, pwd, user_name, navigate))
     }
-=======
-import React from "react";
-import styled from "styled-components";
-import {Grid, Text, Input, Button} from "../elements"
-
-const SignUp = (props) => {
->>>>>>> 2f2a128cc50b37a590a8e647f1f2ddd5f22ae66e
 
     return (
         <>
@@ -45,13 +37,8 @@ const SignUp = (props) => {
                     <Input
                         label="아이디"
                         placeholder="아이디를 입력해주세요"
-<<<<<<< HEAD
                         _onChange={(e) => {
                             setId(e.target.value)
-=======
-                        _onChange={() => {
-                            console.log("아이디")
->>>>>>> 2f2a128cc50b37a590a8e647f1f2ddd5f22ae66e
                         }}
                     />
                 </Grid>
@@ -59,13 +46,8 @@ const SignUp = (props) => {
                     <Input
                         label="닉네임"
                         placeholder="닉네임을 입력해주세요"
-<<<<<<< HEAD
                         _onChange={(e) => {
                             setUserName(e.target.value)
-=======
-                        _onChange={() => {
-                            console.log("닉네임")
->>>>>>> 2f2a128cc50b37a590a8e647f1f2ddd5f22ae66e
                         }}
                     />
                 </Grid>
@@ -73,14 +55,9 @@ const SignUp = (props) => {
                     <Input
                         label="패스워드"
                         placeholder="패스워드를 입력해주세요"
-<<<<<<< HEAD
                         type='password'
                         _onChange={(e) => {
                             setPwd(e.target.value)
-=======
-                        _onChange={() => {
-                            console.log("패스워드")
->>>>>>> 2f2a128cc50b37a590a8e647f1f2ddd5f22ae66e
                         }}
                     />
                 </Grid>
@@ -88,23 +65,14 @@ const SignUp = (props) => {
                     <Input
                         label="패스워드 확인"
                         placeholder="패스워드를 다시 입력해주세요"
-<<<<<<< HEAD
                         type='password'
                         _onChange={(e) => {
                             setPwdCheck(e.target.value)
-=======
-                        _onChange={() => {
-                            console.log("패스워드 확인")
->>>>>>> 2f2a128cc50b37a590a8e647f1f2ddd5f22ae66e
                         }}
                     />
                 </Grid>
 
-<<<<<<< HEAD
                 <Button text="회원가입" _onClick={signup}></Button>
-=======
-                <Button text="회원가입하기"></Button>
->>>>>>> 2f2a128cc50b37a590a8e647f1f2ddd5f22ae66e
             </Grid>
         </>
     )

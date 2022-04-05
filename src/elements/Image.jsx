@@ -22,17 +22,10 @@ const Image = (props) => {
             </AspectOutter>
         )
     }
-<<<<<<< HEAD
     //
     // return (
     //     <ImageCircle></ImageCircle>
     // )
-=======
-
-    return (
-        <ImageCircle></ImageCircle>
-    )
->>>>>>> 2f2a128cc50b37a590a8e647f1f2ddd5f22ae66e
 }
 
 Image.defaultProps = {
@@ -59,7 +52,7 @@ const ImageCircle = styled.div`
   width: var(--size);
   height: var(--size);
   border-radius: var(--size);
-  
+
   background-image: url("${(props) => props.src}");
   background-size: cover;
   margin: 4px;
