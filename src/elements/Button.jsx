@@ -2,36 +2,44 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
-    const {text, _onClick, is_float} = props;
-
+    const {text, _onClick, is_float, children, margin, width, padding} = props;
 
     if (is_float) {
         return (
-            <>
-                <FloatButton onClick={_onClick}>{text}</FloatButton>
-            </>
+            <FloatButton onClick={_onClick}>{text ? text : children}</FloatButton>
         )
     }
 
+    const styles = {
+        margin: margin,
+        width: width,
+        padding: padding
+    }
 
     return (
-        <ElButton onClick={_onClick}>{text}</ElButton>
+        <ElButton {...styles} onClick={_onClick}>{text ? text : children}</ElButton>
     )
 }
 
 Button.defaultProps = {
-    text: '텍스트',
-    _onClick: () => {},
+    text: false,
+    _onClick: () => {
+    },
     is_float: false,
+    children: null,
+    margin: false,
+    width: '100%',
+    padding: "12px 0px"
 }
 
 const ElButton = styled.button`
-  width: 100%;
+  width: ${(props) => props?.width};
   background-color: #212121;
   color: #ffffff;
-  padding: 12px 0;
+  padding: ${(props) => props.padding};
   box-sizing: border-box;
   border: none;
+  ${(props) => (props.margin ? `margin: ${props.margin}` : '')}
 `
 
 const FloatButton = styled.button`

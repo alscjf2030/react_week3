@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import styled from "styled-components";
 import {Grid, Text, Input, Button} from "../elements"
 
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {actionCreators as userActions} from "../redux/modules/user";
+import {emailCheck} from "../shared/common";
 
 const SignUp = (props) => {
     const navigate = useNavigate()
@@ -17,15 +17,32 @@ const SignUp = (props) => {
 
     const signup = () => {
 
-        if(pwd !== pwd_check){
-            return
-        }
+        let _reg = /^[0-9a-zA-Z]([-_.0-9a-zA-Z]*)@[0-9a-zA-Z]([-_.0-9a-zA-Z])*.([a-zA-Z])*/
+        console.log(_reg.test(id));
 
         if(id === '' || pwd ==='' || user_name === ''){
+            window.alert('아이디, 패스워드, 닉네임을 모두 입력해 주세요.')
+            return;
+        }
+
+        if(!emailCheck(id)){
+            window.alert('이메일 형식이 맞지 않습니다.')
+            return;
+        }
+
+        if(pwd !== pwd_check){
+            window.alert('패스워드를 확인해 주세요.')
+            return;
+        }
+
+        if(pwd.length < 6){
+            window.alert("패스워드가 짧습니다.")
             return;
         }
 
         dispatch(userActions.signupFB(id, pwd, user_name, navigate))
+
+        return window.alert("회원가입을 축하드립니다.");
     }
 
     return (
@@ -76,52 +93,10 @@ const SignUp = (props) => {
             </Grid>
         </>
     )
-
-    // return (
-    //     <SignUpBox>
-    //         <h1 style={{margin:"30px"}}>회원가입</h1>
-    //         <div>
-    //             <p>아이디</p>
-    //             <Input type="text" placeholder="아이디를 입력해 주세요!"
-    //             style={{border: "2px solid #61dafb" , borderRadius: "3px"}} />
-    //             <p>닉네임</p>
-    //             <Input type="text" placeholder="닉네임을 입력해 주세요!"
-    //                    style={{border: "2px solid #61dafb" , borderRadius: "3px"}}/>
-    //             <p>패스워드</p>
-    //             <Input type="text" placeholder="패스워드를 입력해 주세요!"
-    //                    style={{border: "2px solid #61dafb" , borderRadius: "3px"}}/>
-    //             <p>패스워드 확인</p>
-    //             <Input type="text" placeholder="패스워드를 한번 더 입력해 주세요!"
-    //                    style={{border: "2px solid #61dafb" , borderRadius: "3px"}}/>
-    //         </div>
-    //         <SignUpButton>회원가입</SignUpButton>
-    //     </SignUpBox>
-    // )
 }
 
 SignUp.defaultProps = {}
 
-// const SignUpBox = styled.div`
-//   //background-color: slateblue;
-//   margin: auto;
-//   max-width: 100%;
-// `
-//
-// const Input = styled.input`
-//   padding: 10px;
-//   width: 100%;
-// `
-//
-// const SignUpButton = styled.button`
-//   margin: 50px 0;
-//   padding: 10px;
-//   width: 100%;
-//   background-color: lightblue;
-//   color: #ffffff;
-//   position: relative;
-//   border: lightblue;
-//   border-radius: 5px;
-// `
 
 export default SignUp;
 

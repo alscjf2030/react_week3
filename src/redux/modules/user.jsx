@@ -36,29 +36,10 @@ const user_initial = {
 
 // middleware actions
 
-const loginFB = (id, pwd) => {
-    return function (dispatch, getState, {history}, navigate) {
-
+const loginFB = (id, pwd, navigate) => {
+    return function (dispatch, getState, {history}) {
         const auth = getAuth();
-        // signInWithEmailAndPassword(auth, id, pwd)
-        //     .then((userCredential) => {
-        //         // Signed in
-        //         const user = userCredential.user;
-        //         console.log(user)
-        //         dispatch(setUser({
-        //             user_name: user.displayName,
-        //             id: id,
-        //             user_profile: ''
-        //         }))
-        //         navigate('/')
-        //     })
-        //     .catch((error) => {
-        //         const errorCode = error.code;
-        //         const errorMessage = error.message;
-        //         console.log(errorCode, errorMessage)
-        //     });
 
-        // 인증 상태 지속 오류시 삭제 후 위 주석 풀기
         setPersistence(auth, browserSessionPersistence)
             .then(() => {
                 signInWithEmailAndPassword(auth, id, pwd)
@@ -72,7 +53,7 @@ const loginFB = (id, pwd) => {
                             user_profile: '',
                             uid: user.uid
                         }))
-                        navigate('/')
+                        navigate('/', {replace: true})
                     })
                     .catch((error) => {
                         const errorCode = error.code;
@@ -86,26 +67,18 @@ const loginFB = (id, pwd) => {
                 const errorMessage = error.message;
                 console.log(errorMessage, errorCode)
             });
-        // 인증 상태 지속 오류시 삭제
     }
 }
-// const loginAction = (user, navigate) => {
-//     return function (dispatch, getState, {history}) {
-//         dispatch(setUser(user))
-//         navigate('/')
-//     }
-// }
 
-const signupFB = (id, pwd, user_name) => {
+const signupFB = (id, pwd, user_name, navigate) => {
     // return async function (dispatch, getState, {history}) {
-    return function (dispatch, getState, {history}, navigate) {
+    return function (dispatch, getState, {history}) {
 
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, id, pwd)
             .then((userCredential) => {
-                // Signed in
                 const user = userCredential.user;
-                console.log(user)
+                // console.log(user)
 
                 updateProfile(auth.currentUser, {
                     displayName: user_name,
@@ -116,7 +89,7 @@ const signupFB = (id, pwd, user_name) => {
                         user_profile: '',
                         uid: user.uid
                     }));
-                    navigate('/');
+                    navigate('/', {replace: true});
                 }).catch((error) => {
                     console.log(error)
                 })
@@ -147,26 +120,26 @@ const signupFB = (id, pwd, user_name) => {
 
 const loginCheckFB = () => {
     return function (dispatch, getState, {history}) {
-        auth.onAuthStateChanged((user)=> {
-            if(user){
+        auth.onAuthStateChanged((user) => {
+            if (user) {
                 dispatch(setUser({
                     user_name: user.displayName,
                     user_profile: '',
                     id: user.email,
                     uid: user.uid,
                 }))
-            }else{
+            } else {
                 dispatch(logOut())
             }
         })
     }
 }
 
-const logoutFB = () => {
-    return function (dispatch, getState, {history}) {
+const logoutFB = (navigate) => {
+    return function (dispatch, getState) {
         auth.signOut().then(() => {
             dispatch(logOut());
-
+            navigate("/", { replace: true })
         })
     }
 }
