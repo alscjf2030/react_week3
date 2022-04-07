@@ -1,10 +1,26 @@
 import React from "react";
 import {Grid, Image, Text, Button} from "../elements"
 //index.jsx 로 묶어서 한번에 import
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {actionCreators as postActions} from "../redux/modules/post";
+import {useDispatch, useSelector} from "react-redux";
 
 const Post = (props) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const params = useParams()
+
+    const post_list = useSelector((state) => state?.post.list);
+
+    const post_id = params.id;
+
+    let _post = post_id ? post_list.find((p) => p.id === post_id) : null;
+
+    const [contents, setContents] = React.useState(_post ? _post.contents : "");
+
+    const deletePost = () => {
+        dispatch(postActions.deletePostFB(post_id, {contents: contents}, navigate));
+    }
 
     return (
         <div>
@@ -19,11 +35,11 @@ const Post = (props) => {
                     }}
                     >수정</Button>}
                     {props.is_me && <Button
-                        width="auto" margin="4px" padding="4px" _onClick={() => {
-                        navigate(`/write/${props.id}`)
-                    }}
-                    >삭제</Button>}
-                </Grid>
+                        width="auto"
+                        margin="4px"
+                        padding="4px"
+                        _onClick={() => {deletePost()}}>삭제</Button>}
+               </Grid>
                 <div style={{display:"flex", justifyContent: "flex-start",}}>
                     <div style={{width:"50%", textAlign:"center"}}>
                         <Text>{props.contents}</Text>

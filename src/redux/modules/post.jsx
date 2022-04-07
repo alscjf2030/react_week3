@@ -59,8 +59,7 @@ const editPostFB = (post_id = null, post = {}, navigate) => {
         }else{
             const user_id = getState().user.uid
             const _upload = storage
-                .ref(`images${user_id}_${new Date().getTime()}`)
-                .putString(_image, "data_url");
+                .ref(`images${user_id}_${new Date().getTime()}`).putString(_image, "data_url");
 
             _upload.then(snapshot => {
                 snapshot.ref
@@ -118,7 +117,7 @@ const addPostFB = (contents="" , navigate) => {
                 postDB.add({...user_info, ..._post, image_url: url}).then((doc) => {
                     let post = {user_info, ..._post, id: doc.id, image_url: url};
                     dispatch(addPost(post))
-                    navigate("/", { replace: true})
+                    navigate("/", { replace: true })
 
                     dispatch(imageActions.setPreview(null));
                 }).catch((err) => {
@@ -160,8 +159,7 @@ const getPostFB = () => {
 
                 // 위 아래 두가지 형식으로 사용 가능능
 
-                let _post = {
-                    ...doc.data(),
+                let _post = {                    ...doc.data(),
                     id: doc.id,
                 }
 

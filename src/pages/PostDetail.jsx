@@ -51,7 +51,7 @@ const PostDetail = (props) => {
 
     return (
         <div>
-            {post && <Post {...post} is_me={ post.user_info.user_id === user_info.uid }/>}
+            {post && <Post {...post} is_me={post.user_info.user_id === user_info.uid}/>}
             <CommentWrite/>
             <CommentList/>
         </div>

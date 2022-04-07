@@ -18,8 +18,6 @@ const PostWrite = (props) => {
 
     const post_id = params.id;
 
-    const { history } = props;
-
     let _post = post_id ? post_list.find((p) => p.id === post_id) : null;
 
     const [contents, setContents] = React.useState(_post ? _post.contents : "");
